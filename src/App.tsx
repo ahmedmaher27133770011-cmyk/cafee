@@ -8,6 +8,24 @@ import ShiftPage from './pages/Shift';
 import DashboardPage from './pages/Dashboard';
 import { ProductsPage, InventoryPage, AdminShiftsPage, UsersPage, InvoicesPage } from './pages/Admin';
 
+// Floating download button - always visible
+function FloatingDownloadButton() {
+  return (
+    <button
+      onClick={downloadFullProject}
+      className="fixed bottom-6 left-6 z-[200] flex items-center gap-2 px-5 py-3 rounded-full bg-[hsl(var(--accent))] text-[hsl(var(--accent-foreground))] font-semibold shadow-[var(--shadow-lg)] hover:bg-[hsl(var(--accent))]/90 hover:-translate-y-1 transition-all animate-fade-in"
+      title="Download Full Project (.zip)"
+    >
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+        <polyline points="7 10 12 15 17 10"/>
+        <line x1="12" y1="15" x2="12" y2="3"/>
+      </svg>
+      <span className="text-sm">Download ZIP</span>
+    </button>
+  );
+}
+
 type Page = 'pos' | 'shift' | 'dashboard' | 'products' | 'inventory' | 'shifts' | 'users' | 'invoices';
 
 export default function App() {
@@ -19,6 +37,7 @@ export default function App() {
     return (
       <>
         <LoginPage />
+        <FloatingDownloadButton />
         <ToastContainer toasts={toasts} removeToast={removeToast} />
       </>
     );
@@ -232,6 +251,9 @@ export default function App() {
       <main className="flex-1 overflow-y-auto pt-14 lg:pt-0">
         {renderPage()}
       </main>
+
+      {/* Floating Download Button */}
+      <FloatingDownloadButton />
 
       {/* Toasts */}
       <ToastContainer toasts={toasts} removeToast={removeToast} />
