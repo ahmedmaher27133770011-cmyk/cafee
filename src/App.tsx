@@ -70,6 +70,15 @@ export default function App() {
               <p className="text-[10px] text-[hsl(var(--muted-foreground))] uppercase tracking-wider">Specialty Coffee</p>
             </div>
           </div>
+          {isAdmin && (
+            <button
+              onClick={downloadFullProject}
+              className="mt-3 w-full flex items-center justify-center gap-2 px-3 py-2 rounded-md text-xs font-medium bg-[hsl(var(--accent))] text-[hsl(var(--accent-foreground))] hover:bg-[hsl(var(--accent))]/90 transition-colors shadow-sm"
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Download Project (.zip)
+            </button>
+          )}
         </div>
 
         {/* Nav */}
@@ -141,15 +150,29 @@ export default function App() {
           <span className="text-lg">☕</span>
           <span className="font-bold font-[family-name:var(--font-display)]">Brew & Bean</span>
         </div>
-        <button
-          onClick={logout}
-          className="p-2 rounded-md hover:bg-[hsl(var(--muted))] min-w-[44px] min-h-[44px] flex items-center justify-center"
-          aria-label="Logout"
-        >
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/>
-          </svg>
-        </button>
+        <div className="flex items-center gap-1">
+          {isAdmin && (
+            <button
+              onClick={downloadFullProject}
+              className="p-2 rounded-md hover:bg-[hsl(var(--muted))] min-w-[44px] min-h-[44px] flex items-center justify-center"
+              aria-label="Download project"
+              title="Download Project (.zip)"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+              </svg>
+            </button>
+          )}
+          <button
+            onClick={logout}
+            className="p-2 rounded-md hover:bg-[hsl(var(--muted))] min-w-[44px] min-h-[44px] flex items-center justify-center"
+            aria-label="Logout"
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/>
+            </svg>
+          </button>
+        </div>
       </div>
 
       {/* Mobile Sidebar Overlay */}
